@@ -44,7 +44,7 @@ func SignPkg(pkg []byte, cert *x509.Certificate, key *rsa.PrivateKey) ([]byte, e
 		return nil, fmt.Errorf("could not write root.cer to %s: %w", temp, err)
 	}
 
-	cmd := exec.Command("xar", "--sign", "-f", path.Join(temp, "archive.pkg"), "--digestinfo-to-sign", path.Join(temp, "digest.dat"), "--sig-size", strconv.Itoa(len(cert.Signature)), "--cert-loc", path.Join(temp, "cert.cer"), "--cert-loc", path.Join(temp, "inter.cer"), "--cert-loc", path.Join(temp, "root.cer"))
+	cmd := exec.Command("xar", "--replace- sign", "-f", path.Join(temp, "archive.pkg"), "--digestinfo-to-sign", path.Join(temp, "digest.dat"), "--sig-size", strconv.Itoa(len(cert.Signature)), "--cert-loc", path.Join(temp, "cert.cer"), "--cert-loc", path.Join(temp, "inter.cer"), "--cert-loc", path.Join(temp, "root.cer"))
 	if b, err := cmd.CombinedOutput(); err != nil {
 		return nil, fmt.Errorf("could not write prepare archive.pkg for signing: %w: %s", err, string(b))
 	}
