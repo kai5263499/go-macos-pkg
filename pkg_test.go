@@ -29,15 +29,19 @@ echo "Hello, World!"
 
 	pkg, err := macospkg.GeneratePkg("com.github.korylprince.go-macos-pkg.test", "1.0.0", postinstall)
 	if err != nil {
-		t.Fatal("generate: want nil err, have: %w", err)
+		t.Fatalf("generate: want nil err, have: %s", err.Error())
 	}
 
 	signedPkg, err := macospkg.SignPkg(pkg, cert, key.(*rsa.PrivateKey))
 	if err != nil {
-		t.Fatal("sign: want nil err, have: %w", err)
+		t.Fatalf("sign: want nil err, have: %s", err.Error())
+	}
+
+	if len(signedPkg) < 1 {
+		t.Fatalf("infalid signedPkg length: %d", len(signedPkg))
 	}
 
 	if err = macospkg.VerifyPkg(signedPkg); err != nil {
-		t.Fatal("verify: want nil err, have: %w", err)
+		t.Fatalf("verify: want nil err, have: %s", err.Error())
 	}
 }

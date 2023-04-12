@@ -21,6 +21,7 @@ var certAppleRootParsed = mustParseCertificate(certAppleRoot)
 
 //go:embed files/DeveloperIDCA.cer
 var certDeveloperID []byte
+var certDeveloperIDParsed = mustParseCertificate(certDeveloperID)
 
 func mustParseCertificate(der []byte) *x509.Certificate {
 	cert, err := x509.ParseCertificate(der)
