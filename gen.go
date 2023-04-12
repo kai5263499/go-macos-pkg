@@ -5,10 +5,10 @@ import (
 	"compress/gzip"
 	"fmt"
 	"os"
-	"os/exec"
 	"path"
 
 	"github.com/korylprince/go-cpio-odc"
+	xar "github.com/korylprince/goxar"
 )
 
 // GeneratePkg creates a Distribution style, payload free pkg with identifier, version, and postinstall.
@@ -79,13 +79,37 @@ func GeneratePkg(identifier, version string, postinstall []byte) ([]byte, error)
 	}
 
 	// package everything with xar
-	cmd := exec.Command("xar", "--compression", "none", "-cf", "-", "Distribution", "payload.pkg")
-	cmd.Dir = temp
+	// cmd := exec.Command("xar", "--compression", "none", "-cf", "-", "Distribution", "payload.pkg")
+	// cmd.Dir = temp
 
-	b, err := cmd.CombinedOutput()
+	// b, err := cmd.CombinedOutput()
+	// if err != nil {
+	// 	return nil, fmt.Errorf("could not create xar archive: %w", err)
+	// }
+
+	writeFilename := "payload.pkg"
+
+	w, err := xar.OpenWriter(writeFilename, nil, nil)
 	if err != nil {
-		return nil, fmt.Errorf("could not create xar archive: %w", err)
+		return nil, err
 	}
 
-	return b, nil
+	if err = w.AddDirectory(temp); err != nil {
+		return nil, err
+	}
+
+	if err := w.Close(); err != nil {
+		return nil, err
+	}
+
+	r, err := xar.OpenReader(writeFilename)
+	if err != nil {
+		return nil, err
+	}
+
+	if err = r.Close(); err != nil {
+		return nil, err
+	}
+
+	return os.ReadFile(writeFilename)
 }
