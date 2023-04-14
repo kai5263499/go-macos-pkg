@@ -1,6 +1,10 @@
 github.com/djherbis/times v1.5.0 h1:79myA211VwPhFTqUk8xehWrsEO+zcIZj0zT8mXPVARU=
 github.com/djherbis/times v1.5.0/go.mod h1:5q7FDLvbNg1L/KaBmPcWlVR9NmoKo3+ucqUA3ijQhA0=
+github.com/kai5263499/goxar v0.0.0-20230414140243-0afc09d9a372 h1:al3DPdC1JhEWtcaXWLq0SAaOvNxRZMc9ZaLMUZft/TA=
+github.com/kai5263499/goxar v0.0.0-20230414140243-0afc09d9a372/go.mod h1:H+9kliNU33Kqrv6ztkG6w99GBtO4Tum6083hA/jgwUA=
 github.com/korylprince/go-cpio-odc v0.9.4 h1:N0Afrp7Z5qCZF8cbpzF5CvyiC/KHK5IcLJwqm5MWpNU=
 github.com/korylprince/go-cpio-odc v0.9.4/go.mod h1:1iHsjUXO64Hui0YsubGp0Tm/Uf04Iow2iy+1LJIarMw=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 golang.org/x/crypto v0.8.0 h1:pd9TJtTueMTVQXzk8E2XESSMQDj/U7OUu0PqJqPXQjQ=
 golang.org/x/crypto v0.8.0/go.mod h1:mRqEX+O9/h5TFCrQhkgjo2yKi0yYA+9ecGkdQoHrywE=
