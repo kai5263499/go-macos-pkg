@@ -37,7 +37,7 @@ func SignPkg(pkg []byte, cert *x509.Certificate, key *rsa.PrivateKey) ([]byte, e
 		return nil, err
 	}
 
-	certs := []*x509.Certificate{cert, certDeveloperIDParsed, certAppleRootParsed}
+	certs := []*x509.Certificate{cert, CertDeveloperIDParsed, CertAppleRootParsed}
 	if err = r.Resign(key, certs, resignedArchiveFilename); err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func VerifyPkg(pkg []byte) error {
 	}
 
 	root := r.Certificates[len(r.Certificates)-1]
-	if !certAppleRootParsed.Equal(root) {
+	if !CertAppleRootParsed.Equal(root) {
 		return errors.New("root certificate is not valid Apple root")
 	}
 
